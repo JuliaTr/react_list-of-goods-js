@@ -1,4 +1,6 @@
 import 'bulma/css/bulma.css';
+import { useState } from 'react';
+
 import './App.scss';
 
 export const goodsFromServer = [
@@ -14,30 +16,38 @@ export const goodsFromServer = [
   'Garlic',
 ];
 
-export const App = () => (
-  <div className="section content">
-    <div className="buttons">
-      <button type="button" className="button is-info is-light">
-        Sort alphabetically
-      </button>
+export const App = () => {
+  const [sortField, setSortField] = useState('');
 
-      <button type="button" className="button is-success is-light">
-        Sort by length
-      </button>
+  return (
+    <div className="section content">
+      <div className="buttons">
+        <button type="button" className="button is-info is-light">
+          Sort alphabetically
+        </button>
 
-      <button type="button" className="button is-warning is-light">
-        Reverse
-      </button>
+        <button type="button" className="button is-success is-light">
+          Sort by length
+        </button>
 
-      <button type="button" className="button is-danger is-light">
-        Reset
-      </button>
+        <button type="button" className="button is-warning is-light">
+          Reverse
+        </button>
+
+        <button
+          type="button"
+          className="button is-danger is-light"
+          onClick={() => setSortField(sortField)}
+        >
+          Reset
+        </button>
+      </div>
+
+      <ul>
+        {goodsFromServer.map(good => (
+          <li data-cy="Good">{good}</li>
+        ))}
+      </ul>
     </div>
-
-    <ul>
-      {goodsFromServer.map(good => (
-        <li data-cy="Good">{good}</li>
-      ))}
-    </ul>
-  </div>
-);
+  );
+};
