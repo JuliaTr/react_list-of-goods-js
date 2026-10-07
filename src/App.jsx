@@ -23,12 +23,19 @@ const SORTED_BY_LENGTH = 'length';
 function getPreparedGoods(goods, sortField) {
   const preparedGoods = [...goods];
 
-  if (sortField === SORTED_ALPHABETICALLY) {
-    preparedGoods.sort();
-  }
+  if (sortField) {
+    preparedGoods.sort((good1, good2) => {
+      switch (sortField) {
+        case SORTED_ALPHABETICALLY:
+          return good1.localeCompare(good2);
 
-  if (sortField === SORTED_BY_LENGTH) {
-    preparedGoods.sort((good1, good2) => good1.length - good2.length);
+        case SORTED_BY_LENGTH:
+          return good1.length - good2.length;
+
+        default:
+          return 0;
+      }
+    });
   }
 
   return preparedGoods;
