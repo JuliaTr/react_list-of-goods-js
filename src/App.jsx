@@ -1,5 +1,6 @@
 import 'bulma/css/bulma.css';
 import { useState } from 'react';
+import classNames from 'classnames';
 
 import './App.scss';
 
@@ -17,8 +18,7 @@ export const goodsFromServer = [
 ];
 
 function getPreparedGoods(goods, sortField) {
-  let preparedGoods = [...goods];
-  // console.log(preparedGoods);
+  const preparedGoods = [...goods];
 
   if (sortField === 'alpha') {
     preparedGoods.sort();
@@ -27,7 +27,6 @@ function getPreparedGoods(goods, sortField) {
   if (sortField === 'length') {
     preparedGoods.sort((good1, good2) => good1.length - good2.length);
   }
-  // console.log(preparedGoods);
 
   return preparedGoods;
 }
@@ -41,14 +40,12 @@ export const App = () => {
     visibleGoods = visibleGoods.toReversed();
   }
 
-  // console.log(visibleGoods);
-
   return (
     <div className="section content">
       <div className="buttons">
         <button
           type="button"
-          className="button is-info is-light"
+          className={`button is-info ${classNames({ 'is-light': sortField !== 'alpha' })}`}
           onClick={() => setSortField('alpha')}
         >
           Sort alphabetically
@@ -56,7 +53,7 @@ export const App = () => {
 
         <button
           type="button"
-          className="button is-success is-light"
+          className={`button is-success ${classNames({ 'is-light': sortField !== 'length' })}`}
           onClick={() => setSortField('length')}
         >
           Sort by length
@@ -64,16 +61,20 @@ export const App = () => {
 
         <button
           type="button"
-          className="button is-warning is-light"
+          className={`button is-warning ${classNames({ 'is-light': reversed === false })}`}
           onClick={() => setReversed(!reversed)}
         >
           Reverse
         </button>
 
+        {}
         <button
           type="button"
           className="button is-danger is-light"
-          onClick={() => setSortField('')}
+          onClick={() => {
+            setSortField('');
+            setReversed(false);
+          }}
         >
           Reset
         </button>
