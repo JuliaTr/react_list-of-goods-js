@@ -17,8 +17,8 @@ export const goodsFromServer = [
   'Garlic',
 ];
 
-const SORTED_ALPHABETICALLY = 'alpha';
-const SORTED_BY_LENGTH = 'length';
+const SORTED_ALPHABETICALLY = 'Sort alphabetically';
+const SORTED_BY_LENGTH = 'Sort by length';
 
 function getPreparedGoods(goods, sortField) {
   const preparedGoods = [...goods];
