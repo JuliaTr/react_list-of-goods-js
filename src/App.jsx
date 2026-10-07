@@ -1,6 +1,5 @@
 import 'bulma/css/bulma.css';
 import { useState } from 'react';
-import classNames from 'classnames';
 
 import './App.scss';
 
@@ -55,7 +54,7 @@ export const App = () => {
       <div className="buttons">
         <button
           type="button"
-          className={`button is-info ${classNames({ 'is-light': sortField !== SORTED_ALPHABETICALLY })}`}
+          className={`button is-info ${sortField !== SORTED_ALPHABETICALLY ? 'is-light' : ''}`}
           onClick={() => setSortField(SORTED_ALPHABETICALLY)}
         >
           Sort alphabetically
@@ -63,7 +62,7 @@ export const App = () => {
 
         <button
           type="button"
-          className={`button is-success ${classNames({ 'is-light': sortField !== SORTED_BY_LENGTH })}`}
+          className={`button is-success ${sortField !== SORTED_BY_LENGTH ? 'is-light' : ''}`}
           onClick={() => setSortField(SORTED_BY_LENGTH)}
         >
           Sort by length
@@ -71,7 +70,7 @@ export const App = () => {
 
         <button
           type="button"
-          className={`button is-warning ${classNames({ 'is-light': reversed === false })}`}
+          className={`button is-warning ${reversed === false ? 'is-light' : ''}`}
           onClick={() => setReversed(!reversed)}
         >
           Reverse
